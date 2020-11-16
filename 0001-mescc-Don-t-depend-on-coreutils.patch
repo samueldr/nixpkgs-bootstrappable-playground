@@ -1,0 +1,35 @@
+From 1260d0cc30a7c2eae2c24b9756339ee3ecf69372 Mon Sep 17 00:00:00 2001
+From: Samuel Dionne-Riel <samuel@dionne-riel.com>
+Date: Mon, 16 Nov 2020 04:37:54 -0500
+Subject: [PATCH] mescc: Don't depend on coreutils
+
+---
+ scripts/mescc.in | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
+
+diff --git a/scripts/mescc.in b/scripts/mescc.in
+index 504b3717..95cacb0c 100644
+--- a/scripts/mescc.in
++++ b/scripts/mescc.in
+@@ -41,11 +41,16 @@ MES=${MES-@prefix@/bin/mes}
+ bindir=${bindir-@bindir@/mes}
+ 
+ if [ ! -f $bindir/mescc.scm ]; then
+-   bindir=$(dirname $0)
++   bindir="$0"
++   bindir="${bindir%/*}"
+ fi
+ 
++EXECUTABLE_NAME="${SCHEME-$MES}"
++# equivalent to `basename`
++EXECUTABLE_NAME="${EXECUTABLE_NAME##*/}"
++
+ sep=
+-if [ "$(basename ${SCHEME-$MES})" = "mes" ]; then
++if [ "$EXECUTABLE_NAME" = "mes" ]; then
+     sep=--
+ fi
+ 
+-- 
+2.28.0
+
