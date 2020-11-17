@@ -23,10 +23,11 @@ let
 
       src = fetchFromSavannah {
         repo = "mes";
-        rev = "refs/tags/v${version}";
+        rev = "v${version}";
         sha256 = "1cfs7q7lx1jap6dwc5vamqk43q2bs1q97i1z6vwvbr2azg32wfkx";
       };
 
+      enableParallelBuilding = true;
       patches = [
         ./0001-mescc-Don-t-depend-on-coreutils.patch
       ];

@@ -1,7 +1,7 @@
 let
   nixpkgs_src = builtins.fetchTarball {
     url = "https://github.com/NixOS/nixpkgs/archive/nixos-20.09.tar.gz";
-    sha256 = "19khdgb8dp28rx4wyb2m2dxdcq83dhidj6046rynb91dfdm6893n";
+    sha256 = "01wim7ayn69y056q28ifw2f0mdypidpc0z15dda54aj5yy5vai09";
   };
 
   nixpkgs = import nixpkgs_src {
